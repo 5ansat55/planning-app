@@ -4,7 +4,10 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import HeaderButton from "../components/HeaderButton";
 
+import { useSelector } from "react-redux";
+
 const PlacesListScreen = (props) => {
+  
   return (
     <View>
       <Text>PlacesListScreen</Text>

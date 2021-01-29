@@ -7,10 +7,17 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
+
+import { useDispatch } from "react-redux";
+import * as placesActions from "../store/places-actions";
+
 import Colors from "../constants/Colors";
 
 const NewPlaceScreen = (props) => {
   const [titleValue, setTitleValue] = useState("");
+
+  const dispatch = useDispatch();
+
 
   const titleChangeHandler = (text) => {
     // you could add validation
@@ -18,7 +25,8 @@ const NewPlaceScreen = (props) => {
   };
 
   const savePlaceHandler = () => {
-    
+    dispatch(placesActions.addPlaces(titleValue))
+    props.navigation.goBack();
   };
 
   return (
@@ -30,7 +38,7 @@ const NewPlaceScreen = (props) => {
           onChangeText={titleChangeHandler}
           value={titleValue}
         />
-        <Button title="Save Place" color={Colors.primary} onPress={() => {}} />
+        <Button title="Save Place" color={Colors.primary} onPress={() => {savePlaceHandler}} />
       </View>
     </ScrollView>
   );
