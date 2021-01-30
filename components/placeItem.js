@@ -5,7 +5,7 @@ import Colors from "../constants/Colors";
 const PlaceItem = ({onSelect, image, title, address }) => {
   return (
     <TouchableOpacity onPress={onSelect} style={styles.placeItem}>
-      <Image style={styles.Image} source={{ uri: image }} />
+      <Image style={styles.image} source={{ uri: image }} />
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.address}>{address}</Text>
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         width:70,
         height:70,
         borderRadius:35,
-        backgroundColor: "blue",
+        backgroundColor: "white",
         borderColor: Colors.primary,
         borderWidth:1,
     },
