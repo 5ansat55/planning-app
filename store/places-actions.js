@@ -1,6 +1,5 @@
 export const ADD_PLACES = "ADD_PLACES";
 
-export const addPlaces = (title) => {
-  console.log(title);
-  return { type: ADD_PLACES, placeData: { title: title } };
+export const addPlaces = (title,image) => {
+  return { type: ADD_PLACES, placeData: { title: title , image:image } };
 };

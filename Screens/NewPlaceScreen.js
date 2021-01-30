@@ -10,23 +10,26 @@ import {
 
 import { useDispatch } from "react-redux";
 import * as placesActions from "../store/places-actions";
+import ImagePicker from "../components/imageSelector";
 
 import Colors from "../constants/Colors";
 
-const NewPlaceScreen = (props) => {
-  const [titleValue, setTitleValue] = useState("");
-
+const NewPlaceScreen = ({navigation}) => {
   const dispatch = useDispatch();
-
+  const [titleValue, setTitleValue] = useState("");
+  const [selectedImage,setSelectedImage]  = useState();
 
   const titleChangeHandler = (text) => {
     // you could add validation
     setTitleValue(text);
   };
 
+  const imageTakenHandler =(imagePath)=>{
+    setSelectedImage(imagePath);
+  }
   const savePlaceHandler = () => {
-    dispatch(placesActions.addPlaces(titleValue))
-    props.navigation.goBack();
+    dispatch(placesActions.addPlaces(titleValue,selectedImage))
+    navigation.goBack();
   };
 
   return (
@@ -38,6 +41,7 @@ const NewPlaceScreen = (props) => {
           onChangeText={titleChangeHandler}
           value={titleValue}
         />
+        <ImagePicker onImageTake={imageTakenHandler} />
         <Button title="Save Place" color={Colors.primary} onPress={savePlaceHandler} />
       </View>
     </ScrollView>

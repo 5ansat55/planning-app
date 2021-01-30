@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 //screens
 import PlaceItem from "../components/placeItem";
 
-const PlacesListScreen = (props) => {
+const PlacesListScreen = ({navigation}) => {
   const places = useSelector((state) => state.places.places);
   return (
     <FlatList
@@ -15,11 +15,11 @@ const PlacesListScreen = (props) => {
       keyExtractor={(item) => item.id}
       renderItem={(itemData) => (
         <PlaceItem
-          image={null}
+          image={itemData.item.imageUri}
           title={itemData.item.title}
           address={null}
           onSelect={() => {
-            props.navigation.navigate("PlaceDetail", {
+            navigation.navigate("PlaceDetail", {
               placeId: itemData.item.id,
               placeTitle: itemData.item.title,
             });

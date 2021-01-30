@@ -1,7 +1,8 @@
 import React from "react";
 import {  StyleSheet, View, Text } from "react-native";
 
-const MapScreen = props => {
+//boş obje olan yerde hata verebilir.
+const MapScreen = ({}) => {
     return <View>
         <Text>MAPSCREEN</Text>
     </View>
