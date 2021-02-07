@@ -3,9 +3,8 @@ import * as FileSystem from "expo-file-system";
 export const ADD_PLACES = "ADD_PLACES";
 
 export const addPlaces = (title,image) => {
-  console.log(image);
   return async dispatch =>{
-    const fileName = image.split("/")
+    const fileName = image.split("/").pop();
     const newPath = FileSystem.documentDirectory + fileName;
 
     try {
