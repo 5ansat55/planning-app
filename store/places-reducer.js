@@ -9,8 +9,10 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case SET_PLACES:
       return {
-        places:action.places.map(pl =>new Place( pl.id.toString(),pl.title,pl.imageUri))
-      }
+        state: action.places.map(
+          (pl) => new Place(pl.id.toString(), pl.title, pl.imageUri)
+        ),
+      };
     case ADD_PLACES:
       const newPlace = new Place(
         action.placeData.id.toString(),
