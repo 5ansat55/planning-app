@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import {
   View,
   Button,
@@ -13,9 +13,17 @@ import * as Permissions from 'expo-permissions';
 import Colors from '../constants/Colors';
 import MapPreview from './MapPreview';
 
-const LocationPicker = props => {
+const LocationPicker = ({navigation}) => {
   const [isFetching, setIsFetching] = useState(false);
   const [pickedLocation, setPickedLocation] = useState();
+
+  const mapPickedLocation = navigation.getParam("pickedLocation");
+  
+  useEffect(()=>{
+    if(mapPickedLocation){
+      setPickedLocation(mapPickedLocation);
+    }
+  },[mapPickedLocation]);
 
   const verifyPermissions = async () => {
     const result = await Permissions.askAsync(Permissions.LOCATION);
@@ -56,7 +64,7 @@ const LocationPicker = props => {
   };
 
   const pickOnMapHandler =()=>{
-    props.navigation.navigate("Map");
+    navigation.navigate("Map");
   }
 
   return (
