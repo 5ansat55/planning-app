@@ -1,14 +1,21 @@
 import React from "react";
-import {  StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
+import MapView from "react-native-maps";
 
 //boş obje olan yerde hata verebilir.
 const MapScreen = ({}) => {
-    return <View>
-        <Text>MAPSCREEN</Text>
-    </View>
-}
+  const mapRegion = {
+    latitude: 37.78,
+    longitude: -122.43,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  };
+  return <MapView style={styles.map} region={mapRegion} />;
+};
 
 const styles = StyleSheet.create({
-
-})
+  map: {    
+    flex: 1,
+  },
+});
 export default MapScreen;

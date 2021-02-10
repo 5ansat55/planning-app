@@ -43,7 +43,7 @@ const NewPlaceScreen = ({navigation}) => {
           value={titleValue}
         />
         <ImagePicker onImageTake={imageTakenHandler} />
-        <LocationPicker />
+        <LocationPicker navigation={navigation} />
         <Button title="Save Place" color={Colors.primary} onPress={savePlaceHandler} />
       </View>
     </ScrollView>
