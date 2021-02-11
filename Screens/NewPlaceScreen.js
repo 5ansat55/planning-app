@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Button,
@@ -15,21 +15,24 @@ import LocationPicker from "../components/LocationPicker";
 
 import Colors from "../constants/Colors";
 
-const NewPlaceScreen = ({navigation}) => {
+const NewPlaceScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const [titleValue, setTitleValue] = useState("");
-  const [selectedImage,setSelectedImage]  = useState();
+  const [selectedImage, setSelectedImage] = useState();
+  const [selectedLocation, setSelectedLocation] = useState();
 
   const titleChangeHandler = (text) => {
     // you could add validation
     setTitleValue(text);
   };
-
-  const imageTakenHandler =(imagePath)=>{
+  const locationPickedHandler = useCallback((location) => {
+    setSelectedLocation(location);
+  }, []);
+  const imageTakenHandler = (imagePath) => {
     setSelectedImage(imagePath);
-  }
+  };
   const savePlaceHandler = () => {
-    dispatch(placesActions.addPlaces(titleValue,selectedImage))
+    dispatch(placesActions.addPlaces(titleValue, selectedImage,selectedLocation));
     navigation.goBack();
   };
 
@@ -43,8 +46,15 @@ const NewPlaceScreen = ({navigation}) => {
           value={titleValue}
         />
         <ImagePicker onImageTake={imageTakenHandler} />
-        <LocationPicker navigation={navigation} />
-        <Button title="Save Place" color={Colors.primary} onPress={savePlaceHandler} />
+        <LocationPicker
+          navigation={navigation}
+          onLocationPicked={locationPickedHandler}
+        />
+        <Button
+          title="Save Place"
+          color={Colors.primary}
+          onPress={savePlaceHandler}
+        />
       </View>
     </ScrollView>
   );

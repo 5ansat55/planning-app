@@ -13,7 +13,7 @@ import * as Permissions from 'expo-permissions';
 import Colors from '../constants/Colors';
 import MapPreview from './MapPreview';
 
-const LocationPicker = ({navigation}) => {
+const LocationPicker = ({navigation,onLocationPicked}) => {
   const [isFetching, setIsFetching] = useState(false);
   const [pickedLocation, setPickedLocation] = useState();
 
@@ -22,8 +22,9 @@ const LocationPicker = ({navigation}) => {
   useEffect(()=>{
     if(mapPickedLocation){
       setPickedLocation(mapPickedLocation);
+      onLocationPicked(mapPickedLocation)
     }
-  },[mapPickedLocation]);
+  },[mapPickedLocation,onLocationPicked]);
 
   const verifyPermissions = async () => {
     const result = await Permissions.askAsync(Permissions.LOCATION);
@@ -53,6 +54,7 @@ const LocationPicker = ({navigation}) => {
         lat: location.coords.latitude,
         lng: location.coords.longitude
       });
+      onLocationPicked(pickedLocation)
     } catch (err) {
       Alert.alert(
         'Could not fetch location!',
