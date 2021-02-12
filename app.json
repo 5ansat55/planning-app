@@ -1,7 +1,9 @@
 {
   "expo": {
-    "name": "planning-app",
-    "slug": "planning-app",
+    "name": "Great Places",
+    "slug": "great-places",
+    "description":"Some text",
+    "privacy":"public",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
