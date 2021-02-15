@@ -9,11 +9,9 @@ export const SET_PLACES = 'SET_PLACES';
 export const addPlace = (title, image, location) => {
   return async dispatch => {
     const response = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
-        location.lat
-      },${location.lng}&key=${ENV.googleGeoApiKey}`
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=${ENV.googleGeoApiKey}`
     );
-
+    
     if (!response.ok) {
       throw new Error('Something went wrong!');
     }
@@ -23,8 +21,8 @@ export const addPlace = (title, image, location) => {
       throw new Error('Something went wrong!');
     }
 
-    const address = resData.results[0].formatted_address;
-
+    // const address = resData.results[0].formatted_address;
+      const address = "Test adress";
     const fileName = image.split('/').pop();
     const newPath = FileSystem.documentDirectory + fileName;
 
@@ -40,6 +38,8 @@ export const addPlace = (title, image, location) => {
         location.lat,
         location.lng
       );
+      console.log(response);
+
       // console.log(dbResult);
       dispatch({
         type: ADD_PLACE,
